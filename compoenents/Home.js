@@ -11,7 +11,7 @@ import {
 import Icon from "react-native-vector-icons/MaterialIcons";
 import MeetingItem from "./subcomponents/MeetingItem";
 
-export default function Home(params) {
+export default function Home({ navigation }) {
   const [dropDn, setDropDn] = useState(true);
   const [meetings, setMeetings] = useState([
     {
@@ -89,14 +89,13 @@ export default function Home(params) {
         <View style={styleHome.topSection}>
           <Text style={styleHome.headerGreet}>Hello</Text>
           <View style={styleHome.headerNotification}>
-            <View>
-              <Icon
-                style={styleHome.icons}
-                name="notifications"
-                size={18}
-                color="red"
-              />
-            </View>
+            <Icon
+              style={styleHome.icons}
+              name="notifications"
+              size={25}
+              color="red"
+            />
+
             <View style={styleHome.profilePhoto}></View>
           </View>
         </View>
@@ -106,16 +105,21 @@ export default function Home(params) {
       <View style={styleHome.bodyContainer}>
         <View></View>
         <View style={styleHome.meetingContainer}>
-          <Pressable
-            style={styleHome.meetingBtn}
-            onPress={() => {
-              console.log("clickcccc");
-              setDropDn(!dropDn);
-            }}
-          >
-            <Text style={styleHome.meetingTitle}>My Meetings</Text>
-            <Icon name="add" color={"#fff"} size={16} />
-          </Pressable>
+          <View style={styleHome.meetingBtn}>
+            <Pressable
+              style={styleHome.showMeetBtn}
+              onPress={() => {
+                console.log("clickcccc");
+                setDropDn(!dropDn);
+              }}
+            >
+              <Text style={styleHome.meetingTitle}>My Meetings</Text>
+            </Pressable>
+            <Pressable style={styleHome.addMeetBtn} onPress={()=>navigation.navigate("scheduleMeeting")}>
+              <Icon name="add" color={"#fff"} size={20} />
+            </Pressable>
+          </View>
+
           {dropDn && (
             <View style={styleHome.itemList}>
               <FlatList
@@ -128,7 +132,22 @@ export default function Home(params) {
           )}
         </View>
         <View style={styleHome.meetingContainer}>
-          <Pressable
+        <View style={styleHome.meetingBtn}>
+            <Pressable
+              style={styleHome.showMeetBtn}
+              onPress={() => {
+                console.log("clickcccc");
+                setDropDn(!dropDn);
+              }}
+            >
+              <Text style={styleHome.meetingTitle}>My Tasks</Text>
+            </Pressable>
+            <Pressable style={styleHome.addMeetBtn} onPress={()=>navigation.navigate("scheduleMeeting")}>
+              <Icon name="add" color={"#fff"} size={20} />
+            </Pressable>
+          </View>
+
+          {/* <Pressable
             style={styleHome.meetingBtn}
             onPress={() => {
               console.log("clickcccc");
@@ -136,8 +155,11 @@ export default function Home(params) {
             }}
           >
             <Text style={styleHome.meetingTitle}>My Tasks</Text>
-            <Icon name="add" color={"#fff"} size={16} />
-          </Pressable>
+            <Icon name="add" color={"#fff"} size={20} />
+          </Pressable> */}
+          {/* <Pressable onPress={navigation.navigate("scheduleMeeting")}> */}
+          {/* </Pressable> */}
+
           {!dropDn && (
             <View style={styleHome.itemList}>
               <FlatList
@@ -168,9 +190,9 @@ const styleHome = StyleSheet.create({
   headerNotification: {
     flex: 0,
     flexDirection: "row",
+    alignItems: "center",
   },
   icons: { margin: 10 },
-  profilePhoto: {},
   headerGreet: {
     fontWeight: "600",
     fontSize: 32,
@@ -188,8 +210,8 @@ const styleHome = StyleSheet.create({
   },
   profilePhoto: {
     backgroundColor: "#000",
-    height: 35,
-    width: 35,
+    height: 40,
+    width: 40,
     borderRadius: 50,
   },
   bodyContainer: {},
@@ -202,15 +224,22 @@ const styleHome = StyleSheet.create({
   meetingBtn: {
     flex: 0,
     flexDirection: "row",
-    justifyContent: "space-between",
     paddingHorizontal: 12,
-    paddingVertical: 20,
+    paddingVertical: 15,
     alignItems: "center",
+    justifyContent:"space-between"
+  },
+  showMeetBtn: {
+    flex:9
+  },
+  addMeetBtn: {
+    flex:.5
   },
   itemList: {
     marginLeft: 12,
     marginRight: 12,
     height: 400,
+    marginBottom:10
   },
   meetingTitle: {
     color: "white",

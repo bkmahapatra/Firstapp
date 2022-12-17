@@ -16,6 +16,7 @@ import Splash from "./compoenents/Splash";
 import Otp from "./compoenents/Otp";
 import Welcome from "./compoenents/Welcome";
 import Home from "./compoenents/Home";
+import ScheduleMeeting from "./compoenents/ScheduleMeeting";
 
 const Stack = createNativeStackNavigator();
 
@@ -43,6 +44,7 @@ export default function App() {
         <Stack.Screen name="otpPg" component={Otp} />
         <Stack.Screen name="welcome_pg" component={Welcome} />
         <Stack.Screen name="dashboard" component={Home} />
+        <Stack.Screen name="scheduleMeeting" component={ScheduleMeeting} />
       </Stack.Navigator>
     </NavigationContainer>
 
