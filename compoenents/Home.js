@@ -96,7 +96,9 @@ export default function Home({ navigation }) {
               color="red"
             />
 
-            <View style={styleHome.profilePhoto}></View>
+            <Pressable style={styleHome.profilePhoto} onPress={()=>(navigation.navigate("profile"))}>
+
+            </Pressable>
           </View>
         </View>
         <Text style={styleHome.profileName}>Arjun Prabhakar</Text>

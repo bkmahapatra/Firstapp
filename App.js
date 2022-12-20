@@ -17,6 +17,7 @@ import Otp from "./compoenents/Otp";
 import Welcome from "./compoenents/Welcome";
 import Home from "./compoenents/Home";
 import ScheduleMeeting from "./compoenents/ScheduleMeeting";
+import Profile from "./compoenents/Profile";
 
 const Stack = createNativeStackNavigator();
 
@@ -45,6 +46,7 @@ export default function App() {
         <Stack.Screen name="welcome_pg" component={Welcome} />
         <Stack.Screen name="dashboard" component={Home} />
         <Stack.Screen name="scheduleMeeting" component={ScheduleMeeting} />
+        <Stack.Screen name="profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
 
